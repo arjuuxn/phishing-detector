@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🔐 AI Phishing Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-section">
+            <h1>🔐 AI Phishing Detector</h1>
+
+            <div class="input-group">
+                <form method="post" action="/check_email">
+                    <textarea name="email" placeholder="✉️ Enter email content here..." required></textarea><br>
+                    <button type="submit">Analyze Email</button>
+                </form>
+                {% if email_result %}
+                <div class="result">{{ email_result }}</div>
+                {% endif %}
+            </div>
+
+            <div class="input-group">
+                <form method="post" action="/check_url">
+                    <input type="text" name="url" placeholder="🌐 Enter suspicious URL here..." required><br>
+                    <button type="submit">Analyze URL</button>
+                </form>
+                {% if url_result %}
+                <div class="result">{{ url_result }}</div>
+                {% endif %}
+            </div>
+
+            <div class="dashboard">
+                <h2>📊 Dashboard (Live Stats)</h2>
+                <ul>
+                    <li>Total Scanned: {{ stats.total }}</li>
+                    <li>Phishing Detected: {{ stats.phishing }}</li>
+                    <li>Safe: {{ stats.safe }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>ℹ️ What is Phishing?</h2>
+            <p>Phishing is a type of online scam where attackers impersonate legitimate institutions to steal sensitive information such as login credentials, credit card numbers, or personal identity details.</p>
+            <img src="/static/images/phishing_email.png" alt="Phishing Email Example">
+            <h3>🚨 How to Avoid Phishing:</h3>
+            <ul>
+                <li>🔒 Never click suspicious links</li>
+                <li>📧 Verify the sender's email address</li>
+                <li>🌍 Use HTTPS websites only</li>
+                <li>❗ Avoid urgency traps (e.g., “Act Now!”)</li>
+                <li>🔍 Check for grammar/spelling mistakes</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
